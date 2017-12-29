@@ -21,7 +21,7 @@ public class nbrjsonwrite
 
 			node_nbr.put("problem",node.getValue().get("problem"));
 
-			for(String concept : node.getValue.get("concept"))
+			for(String concept : node.getValue().get("concept"))
 			{
 				concept_node.add(concept);
 			}
@@ -66,7 +66,7 @@ public class nbrjsonwrite
 			edge_potiential.put("0",edge.getValue()[0]);
 			edge_potiential.put("1",edge.getValue()[1]);
 
-			obj.put(edge.getKey,edge_potiential);
+			obj.put(edge.getKey(),edge_potiential);
 		}
 
 		return obj;
