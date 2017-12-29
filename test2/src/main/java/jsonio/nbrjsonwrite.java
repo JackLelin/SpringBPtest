@@ -44,10 +44,10 @@ public class nbrjsonwrite
 
 			for(String node : edge.getKey())
 				node_name.add(node);
-			edge_potiential.put("00",edge.getValue[0][0]);
-			edge_potiential.put("01",edge.getValue[0][1]);
-			edge_potiential.put("10",edge.getValue[1][0]);
-			edge_potiential.put("11",edge.getValue[1][1]);
+			edge_potiential.put("00",edge.getValue()[0][0]);
+			edge_potiential.put("01",edge.getValue()[0][1]);
+			edge_potiential.put("10",edge.getValue()[1][0]);
+			edge_potiential.put("11",edge.getValue()[1][1]);
 
 			obj.put(node_name,edge_potiential);
 		}
@@ -63,8 +63,8 @@ public class nbrjsonwrite
 		{
 			JSONObject edge_potiential = new JSONObject();
 
-			edge_potiential.put("0",edge.getValue[0]);
-			edge_potiential.put("1",edge.getValue[1]);
+			edge_potiential.put("0",edge.getValue()[0]);
+			edge_potiential.put("1",edge.getValue()[1]);
 
 			obj.put(edge.getKey,edge_potiential);
 		}
@@ -244,12 +244,10 @@ public class nbrjsonwrite
 		
 	}
 	
-	public static void main(String[] acg)
+	public static void main(String[] acg) 
 	{
 		try {bptest();}
-		catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+		catch (IOException e) {
             e.printStackTrace();
         }
 	}
