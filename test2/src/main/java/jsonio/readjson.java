@@ -18,29 +18,29 @@ public class readjson
         {
             JSONArray a = (JSONArray) parser.parse(new FileReader("/a.json"));
 
-        for (Object o : a)
-        {
-            JSONObject person = (JSONObject) o;
-
-            String name = (String) person.get("name");
-            System.out.println(name);
-
-            String city = (String) person.get("city");
-            System.out.println(city);
-
-            String job = (String) person.get("job");
-            System.out.println(job);
-
-            JSONArray cars = (JSONArray) person.get("cars");
-
-            for (Object c : cars)
+            for (Object o : a)
             {
-              System.out.println(c+"");
+                JSONObject person = (JSONObject) o;
+
+                String name = (String) person.get("name");
+                System.out.println(name);
+
+                String city = (String) person.get("city");
+                System.out.println(city);
+
+                String job = (String) person.get("job");
+                System.out.println(job);
+
+                JSONArray cars = (JSONArray) person.get("cars");
+
+                for (Object c : cars)
+                {
+                  System.out.println(c+"");
+                }
             }
-        }
 
         }
-catch (FileNotFoundException e) {
+        catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
