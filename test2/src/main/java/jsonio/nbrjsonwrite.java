@@ -7,10 +7,10 @@ import org.json.simple.JSONObject;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class test throws IOException 
+public class test 
 {
 	
-	public static JSONObject concept_node_nbr_toJSON(HashMap<String,HashMap<String,HashSet<String>>> concept_nodes_nbr)
+	public static JSONObject concept_node_nbr_toJSON(HashMap<String,HashMap<String,HashSet<String>>> concept_nodes_nbr) 
 	{
 		JSONObject jsonobj = new JSONObject();
 
@@ -73,7 +73,7 @@ public class test throws IOException
 	}
 
 	
-	public static void bptest()
+	public static void bptest() throws IOException 
 	{
 		int module = 1;
 		HashMap<String,Integer> observation = new HashMap<String,Integer>();
