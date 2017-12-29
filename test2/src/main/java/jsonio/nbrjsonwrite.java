@@ -7,7 +7,7 @@ import org.json.simple.JSONObject;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class test 
+public class nbrjsonwrite 
 {
 	
 	public static JSONObject concept_node_nbr_toJSON(HashMap<String,HashMap<String,HashSet<String>>> concept_nodes_nbr) 
@@ -37,7 +37,7 @@ public class test
 	{
 		JSONObject obj = new JSONObject();
 
-		for (HashMap.Entry<HashSet<String>,Double[][]> edge : undirected_edges)
+		for (HashMap.Entry<HashSet<String>,Double[][]> edge : undirected_edges.entrySet())
 		{
 			JSONArray node_name = new JSONArray();
 			JSONObject edge_potiential = new JSONObject();
@@ -59,7 +59,7 @@ public class test
 	{
 		JSONObject obj = new JSONObject();
 
-		for (HashMap.Entry<String,Double[]> edge : directed_edges)
+		for (HashMap.Entry<String,Double[]> edge : directed_edges.entrySet())
 		{
 			JSONObject edge_potiential = new JSONObject();
 
