@@ -4,8 +4,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import java.io.FileWriter;
+import java.io.IOException;
 
-public class test 
+public class test throws IOException 
 {
 	
 	public static JSONObject concept_node_nbr_toJSON(HashMap<String,HashMap<String,HashSet<String>>> concept_nodes_nbr)
@@ -187,9 +189,9 @@ public class test
 
 		}
 
-		SONObject obj1 =  concept_node_nbr_toJSON (concept_nodes_nbr);
-		SONObject obj2 =  undirected_edges_toJSON (undirected_edges);
-		SONObject obj3 =  directed_edges_toJSON (directed_edges);
+		JSONObject obj1 =  concept_node_nbr_toJSON (concept_nodes_nbr);
+		JSONObject obj2 =  undirected_edges_toJSON (undirected_edges);
+		JSONObject obj3 =  directed_edges_toJSON (directed_edges);
 		
 		FileWriter file1 = new FileWriter("jsonfile1.txt");
 		FileWriter file2 = new FileWriter("jsonfile2.txt");
@@ -244,6 +246,11 @@ public class test
 	
 	public static void main(String[] acg)
 	{
-		bptest();
+		try {bptest();}
+		catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 }
