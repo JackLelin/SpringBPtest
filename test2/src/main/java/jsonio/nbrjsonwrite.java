@@ -198,12 +198,18 @@ public class nbrjsonwrite
 		FileWriter file3 = new FileWriter("jsonfile3.txt");
 
 		file1.write(obj1.toJSONString());
+		file1.flush();
+		file1.close();
 		System.out.println("Successfully Copied JSON Object to File...");
 		System.out.println("\nJSON Object: " + obj1);
 		file2.write(obj2.toJSONString());
+		file2.flush();
+		file2.close();
 		System.out.println("Successfully Copied JSON Object to File...");
 		System.out.println("\nJSON Object: " + obj2);
 		file3.write(obj3.toJSONString());
+		file3.flush();
+		file3.close();
 		System.out.println("Successfully Copied JSON Object to File...");
 		System.out.println("\nJSON Object: " + obj3);
 		// HashMap<String,Double> concept_nodes_marginal = new ;HashMap<String,Double> ();
