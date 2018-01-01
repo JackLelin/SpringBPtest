@@ -16,7 +16,7 @@ public class nbrjsonwrite
 
 		for (HashMap.Entry<String,HashMap<String,HashSet<String>>> node : concept_nodes_nbr.entrySet())
 		{
-			String node_nbr = new JSONObject();
+			JSONObject node_nbr = new JSONObject();
 			JSONArray concept_node = new JSONArray();
 			JSONArray problem_node = new JSONArray();
 
