@@ -66,8 +66,11 @@ public class nbrjsonread
                 }
                 i ++;
             }
-
- 			undirected_edges.put((String)edge,potential);
+            String[] parts = (String)edge.split("#");
+            HashSet<String> edge_node = new HashSet<String>();
+            edge_node.add(parts[0]);
+            edge_node.add(parts[1]);
+ 			undirected_edges.put(edge_node,potential);
         }
 
         return undirected_edges;
@@ -75,7 +78,7 @@ public class nbrjsonread
 
 	public static HashMap<String,Double[]>  to_directed_edges(JSONObject dir_edge)
 	{
-		HashMap<HashSet<String>,Double[]> directed_edges =  new HashMap<HashSet<String>,Double[]>();
+		HashMap<String,Double[]> directed_edges =  new HashMap<String,Double[]>();
 
         JSONArray all_edges = (JSONArray)dir_edge.get("edges");
         for (Object edge : all_edges)
