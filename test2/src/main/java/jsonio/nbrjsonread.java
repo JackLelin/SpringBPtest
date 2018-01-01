@@ -37,7 +37,7 @@ public class nbrjsonread
 
 			for(Object concept : con_nbr)
 				concept_node.add((String)concept);
-			node_nbr.put("concept",concept_node)
+			node_nbr.put("concept",concept_node);
 
  			concept_nodes_nbr.put((String)node,node_nbr);
         }
