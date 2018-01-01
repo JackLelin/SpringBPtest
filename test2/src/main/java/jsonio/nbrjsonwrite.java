@@ -57,12 +57,12 @@ public class nbrjsonwrite
 					node_name = node_name + "#" + node;
 
 			}
-			// double[][] pot;
-			// pot[0][0] = edge.getValue()[0][0];
-			// pot[0][1] = edge.getValue()[0][1];
-			// pot[1][0] = edge.getValue()[1][0];
-			// pot[1][1] = edge.getValue()[1][1];
-			obj.put(node_name,edge.getValue().doubleValue());
+			double[][] pot;
+			pot[0][0] = edge.getValue()[0][0].doubleValue();
+			pot[0][1] = edge.getValue()[0][1].doubleValue();
+			pot[1][0] = edge.getValue()[1][0].doubleValue();
+			pot[1][1] = edge.getValue()[1][1].doubleValue();
+			obj.put(node_name,pot);
 		}
 
 		return obj;
@@ -74,12 +74,12 @@ public class nbrjsonwrite
 
 		for (HashMap.Entry<String,Double[]> edge : directed_edges.entrySet())
 		{
-			// double[][] pot;
-			// pot[0][0] = edge.getValue()[0][0];
-			// pot[0][1] = edge.getValue()[0][1];
-			// pot[1][0] = edge.getValue()[1][0];
-			// pot[1][1] = edge.getValue()[1][1];
-			obj.put(edge.getKey(),edge.getValue().doubleValue());
+			double[][] pot;
+			pot[0][0] = edge.getValue()[0][0].doubleValue();
+			pot[0][1] = edge.getValue()[0][1].doubleValue();
+			pot[1][0] = edge.getValue()[1][0].doubleValue();
+			pot[1][1] = edge.getValue()[1][1].doubleValue();
+			obj.put(edge.getKey(),pot);
 		}
 
 		return obj;
