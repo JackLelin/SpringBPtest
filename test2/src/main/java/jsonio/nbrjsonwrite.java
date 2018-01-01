@@ -275,11 +275,11 @@ public class nbrjsonwrite
 		
 	}
 	
-	public static void main(String[] acg) 
-	{
-		try {bptest();}
-		catch (IOException e) {
-            e.printStackTrace();
-        }
-	}
+	// public static void main(String[] acg) 
+	// {
+	// 	try {bptest();}
+	// 	catch (IOException e) {
+ //            e.printStackTrace();
+ //        }
+	// }
 }
