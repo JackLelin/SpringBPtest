@@ -16,10 +16,15 @@ public class nbrjsonwrite
 
 		for (HashMap.Entry<String,HashMap<String,HashSet<String>>> node : concept_nodes_nbr.entrySet())
 		{
-			JSONObject node_nbr = new JSONObject();
+			String node_nbr = new JSONObject();
 			JSONArray concept_node = new JSONArray();
+			JSONArray problem_node = new JSONArray();
 
-			node_nbr.put("problem",node.getValue().get("problem"));
+			for(String problem : node.getValue().get("problem"))
+			{
+				problem_node.add(problem);
+			}
+			node_nbr.put("problem",problem_node);
 
 			for(String concept : node.getValue().get("concept"))
 			{
@@ -39,17 +44,12 @@ public class nbrjsonwrite
 
 		for (HashMap.Entry<HashSet<String>,Double[][]> edge : undirected_edges.entrySet())
 		{
-			JSONArray node_name = new JSONArray();
-			JSONObject edge_potiential = new JSONObject();
+			String node_name = new String();
 
 			for(String node : edge.getKey())
-				node_name.add(node);
-			edge_potiential.put("00",edge.getValue()[0][0]);
-			edge_potiential.put("01",edge.getValue()[0][1]);
-			edge_potiential.put("10",edge.getValue()[1][0]);
-			edge_potiential.put("11",edge.getValue()[1][1]);
+				node_name = node_name + "#" + node);
 
-			obj.put(node_name,edge_potiential);
+			obj.put(node_name,edge.getValue());
 		}
 
 		return obj;
@@ -61,12 +61,7 @@ public class nbrjsonwrite
 
 		for (HashMap.Entry<String,Double[]> edge : directed_edges.entrySet())
 		{
-			JSONObject edge_potiential = new JSONObject();
-
-			edge_potiential.put("0",edge.getValue()[0]);
-			edge_potiential.put("1",edge.getValue()[1]);
-
-			obj.put(edge.getKey(),edge_potiential);
+			obj.put(edge.getKey(),edge.getValue());
 		}
 
 		return obj;
