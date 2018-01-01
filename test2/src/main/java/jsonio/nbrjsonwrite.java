@@ -215,9 +215,9 @@ public class nbrjsonwrite
 		JSONObject obj2 =  undirected_edges_toJSON (undirected_edges);
 		JSONObject obj3 =  directed_edges_toJSON (directed_edges);
 		
-		FileWriter file1 = new FileWriter("jsonfile1.txt");
-		FileWriter file2 = new FileWriter("jsonfile2.txt");
-		FileWriter file3 = new FileWriter("jsonfile3.txt");
+		FileWriter file1 = new FileWriter("concept_node_nbr.txt");
+		FileWriter file2 = new FileWriter("undirected_edges.txt");
+		FileWriter file3 = new FileWriter("directed_edges.txt");
 
 		file1.write(obj1.toJSONString());
 		file1.flush();
