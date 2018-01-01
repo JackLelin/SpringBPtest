@@ -108,9 +108,9 @@ public class nbrjsonread
 		JSONParser parser = new JSONParser();
         try
         {
-            JSONObject a = (JSONObject) parser.parse(new FileReader("concept_node_nbr.json"));
-            JSONObject b = (JSONObject) parser.parse(new FileReader("undirected_edges.json"));
-            JSONObject c = (JSONObject) parser.parse(new FileReader("directed_edges.json"));
+            JSONObject a = (JSONObject) parser.parse(new FileReader("concept_node_nbr.txt"));
+            JSONObject b = (JSONObject) parser.parse(new FileReader("undirected_edges.txt"));
+            JSONObject c = (JSONObject) parser.parse(new FileReader("directed_edges.txt"));
 
 
             HashMap<String,HashMap<String,HashSet<String>>> concept_nodes_nbr = to_concept_node_nbr(a);
