@@ -13,6 +13,7 @@ public class nbrjsonwrite
 	public static JSONObject concept_node_nbr_toJSON(HashMap<String,HashMap<String,HashSet<String>>> concept_nodes_nbr) 
 	{
 		JSONObject jsonobj = new JSONObject();
+		JSONArray all_nodes = new JSONArray();
 
 		for (HashMap.Entry<String,HashMap<String,HashSet<String>>> node : concept_nodes_nbr.entrySet())
 		{
@@ -33,14 +34,17 @@ public class nbrjsonwrite
 			node_nbr.put("concept",concept_node);
 
 			jsonobj.put(node.getKey(),node_nbr);	
+			all_nodes.add(node.getKey());
 
 		}
+		jsonobj.put("nodes",all_nodes);
 		return jsonobj;
 	}
 
 	public static JSONObject undirected_edges_toJSON(HashMap<HashSet<String>,Double[][]> undirected_edges)
 	{
 		JSONObject obj = new JSONObject();
+		JSONArray all_edges = new JSONArray();
 
 		for (HashMap.Entry<HashSet<String>,Double[][]> edge : undirected_edges.entrySet())
 		{
@@ -55,7 +59,6 @@ public class nbrjsonwrite
 				}
 				else
 					node_name = node_name + "#" + node;
-
 			}
 			JSONArray pot0 = new JSONArray();
 			pot0.add(edge.getValue()[0][0].doubleValue());
@@ -67,7 +70,9 @@ public class nbrjsonwrite
 			JSONArray pot = new JSONArray();
 			pot.add(pot0); pot.add(pot1);
 			obj.put(node_name,pot);
+			all_edges.add(node_name);
 		}
+		obj.put("edges",all_edges);
 
 		return obj;
 	}
@@ -75,14 +80,17 @@ public class nbrjsonwrite
 	public static JSONObject directed_edges_toJSON(HashMap<String,Double[]> directed_edges)
 	{
 		JSONObject obj = new JSONObject();
+		JSONArray all_edges = new JSONArray();
 
 		for (HashMap.Entry<String,Double[]> edge : directed_edges.entrySet())
 		{
 			JSONArray pot = new JSONArray();
 			pot.add(edge.getValue()[0].doubleValue()); pot.add(edge.getValue()[1].doubleValue());
 			obj.put(edge.getKey(),pot);
+			all_edges.add(edge.getKey());
 		}
 
+		obj.put("edges",all_edges);
 		return obj;
 	}
 
