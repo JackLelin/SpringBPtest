@@ -45,11 +45,20 @@ public class nbrjsonwrite
 		for (HashMap.Entry<HashSet<String>,Double[][]> edge : undirected_edges.entrySet())
 		{
 			String node_name = new String();
-
+			int i =0 ;
 			for(String node : edge.getKey())
-				node_name = node_name + "#" + node;
+			{
+				if ( i == 0)
+				{
+					node_name = node_name + node;
+					i = 1;					
+				}
+				else
+					node_name = node_name + "#" + node;
 
-			obj.put(node_name,edge.getValue());
+			}
+
+			obj.put(node_name,(double[][])edge.getValue());
 		}
 
 		return obj;
@@ -61,7 +70,7 @@ public class nbrjsonwrite
 
 		for (HashMap.Entry<String,Double[]> edge : directed_edges.entrySet())
 		{
-			obj.put(edge.getKey(),edge.getValue());
+			obj.put(edge.getKey(),(double[][])edge.getValue());
 		}
 
 		return obj;
