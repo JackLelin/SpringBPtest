@@ -1,7 +1,7 @@
 package jsonio;
 
-import java.util.Iterator;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -66,7 +66,7 @@ public class nbrjsonread
                 }
                 i ++;
             }
-            String[] parts = (String)edge.split("#");
+            String[] parts = ((String)edge).split("#");
             HashSet<String> edge_node = new HashSet<String>();
             edge_node.add(parts[0]);
             edge_node.add(parts[1]);
@@ -102,54 +102,54 @@ public class nbrjsonread
 	}
 
 	
-	public static void readtest() throws IOException 
-	{
+	// public static void readtest() throws IOException 
+	// {
 
-		JSONParser parser = new JSONParser();
-        try
-        {
-            JSONObject a = (JSONObject) parser.parse(new FileReader("concept_node_nbr.json"));
-            JSONObject b = (JSONObject) parser.parse(new FileReader("undirected_edges.json"));
-            JSONObject c = (JSONObject) parser.parse(new FileReader("directed_edges.json"));
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+	// 	JSONParser parser = new JSONParser();
+ //        try
+ //        {
+ //            JSONObject a = (JSONObject) parser.parse(new FileReader("concept_node_nbr.json"));
+ //            JSONObject b = (JSONObject) parser.parse(new FileReader("undirected_edges.json"));
+ //            JSONObject c = (JSONObject) parser.parse(new FileReader("directed_edges.json"));
+ //        }
+ //        catch (FileNotFoundException e) {
+ //            e.printStackTrace();
+ //        } catch (IOException e) {
+ //            e.printStackTrace();
+ //        } catch (ParseException e) {
+ //            e.printStackTrace();
+ //        }
 
-        HashMap<String,HashMap<String,HashSet<String>>> concept_nodes_nbr = to_concept_node_nbr(a);
-		HashMap<HashSet<String>,Double[][]> undirected_edges = to_undirected_edges(b);
-		HashMap<String,Double[]>  directed_edges = to_directed_edges(c);
+ //        HashMap<String,HashMap<String,HashSet<String>>> concept_nodes_nbr = to_concept_node_nbr(a);
+	// 	HashMap<HashSet<String>,Double[][]> undirected_edges = to_undirected_edges(b);
+	// 	HashMap<String,Double[]>  directed_edges = to_directed_edges(c);
 
-		JSONObject obj1 =  concept_node_nbr_toJSON (concept_nodes_nbr);
-		JSONObject obj2 =  undirected_edges_toJSON (undirected_edges);
-		JSONObject obj3 =  directed_edges_toJSON (directed_edges);
+	// 	JSONObject obj1 =  concept_node_nbr_toJSON (concept_nodes_nbr);
+	// 	JSONObject obj2 =  undirected_edges_toJSON (undirected_edges);
+	// 	JSONObject obj3 =  directed_edges_toJSON (directed_edges);
 		
-		FileWriter file1 = new FileWriter("concept_node_nbr1.txt");
-		FileWriter file2 = new FileWriter("undirected_edges1.txt");
-		FileWriter file3 = new FileWriter("directed_edges1.txt");
+	// 	FileWriter file1 = new FileWriter("concept_node_nbr1.txt");
+	// 	FileWriter file2 = new FileWriter("undirected_edges1.txt");
+	// 	FileWriter file3 = new FileWriter("directed_edges1.txt");
 
-		file1.write(obj1.toJSONString());
-		file1.flush();
-		file1.close();
-		System.out.println("Successfully Copied JSON Object to File...");
-		System.out.println("\nJSON Object: " + obj1);
-		file2.write(obj2.toJSONString());
-		file2.flush();
-		file2.close();
-		System.out.println("Successfully Copied JSON Object to File...");
-		System.out.println("\nJSON Object: " + obj2);
-		file3.write(obj3.toJSONString());
-		file3.flush();
-		file3.close();
-		System.out.println("Successfully Copied JSON Object to File...");
-		System.out.println("\nJSON Object: " + obj3);
+	// 	file1.write(obj1.toJSONString());
+	// 	file1.flush();
+	// 	file1.close();
+	// 	System.out.println("Successfully Copied JSON Object to File...");
+	// 	System.out.println("\nJSON Object: " + obj1);
+	// 	file2.write(obj2.toJSONString());
+	// 	file2.flush();
+	// 	file2.close();
+	// 	System.out.println("Successfully Copied JSON Object to File...");
+	// 	System.out.println("\nJSON Object: " + obj2);
+	// 	file3.write(obj3.toJSONString());
+	// 	file3.flush();
+	// 	file3.close();
+	// 	System.out.println("Successfully Copied JSON Object to File...");
+	// 	System.out.println("\nJSON Object: " + obj3);
 
 		
-	}
+	// }
 	
 	// public static void main(String[] acg) 
 	// {

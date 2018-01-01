@@ -17,11 +17,11 @@ public class GreetingController {
         return new Greeting( counter.incrementAndGet(), String.format(template, name) );
     }
 
-    @RequestMapping("/bp")
-    public Greeting greeting(@RequestParam(value=1, defaultValue=2) int testid) 
-    {
-    	// Integer.parseInt(
-        return new BpResult( testid);
-    }
+    // @RequestMapping("/bp")
+    // public Greeting greeting(@RequestParam(value=1, defaultValue=2) int testid) 
+    // {
+    // 	// Integer.parseInt(
+    //     return new BpResult( testid);
+    // }
 
 }
