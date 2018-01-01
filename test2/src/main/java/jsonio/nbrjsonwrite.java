@@ -47,7 +47,7 @@ public class nbrjsonwrite
 			String node_name = new String();
 
 			for(String node : edge.getKey())
-				node_name = node_name + "#" + node);
+				node_name = node_name + "#" + node;
 
 			obj.put(node_name,edge.getValue());
 		}
