@@ -10,50 +10,36 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import java.util.Iterator;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.FileNotFoundException;
 
 
 public class nbrjsonread 
 {
 	
-	public static HashMap<String,HashMap<String,HashSet<String>>>  to_concept_node_nbr(JSONObject nbr) 
+	public static HashMap<String,HashMap<String,HashSet<String>>> to_concept_node_nbr(JSONObject nbr) 
 	{
 		HashMap<String,HashMap<String,HashSet<String>>> concept_nodes_nbr =  new HashMap<String,HashMap<String,HashSet<String>>>();
-        try
+
+        JSONArray all_nodes = (JSONArray)nbr.get("nodes");
+        for (Object node : all_nodes)
         {
-            JSONArray all_nodes = (JSONArray)nbr.get("nodes");
-            for (Object node : all_nodes)
-            {
-                JSONObject _node_nbr = (JSONObject) nbr.get((String)node);
+            JSONObject _node_nbr = (JSONObject) nbr.get((String)node);
 
-                JSONArray pro_nbr = (JSONArray)_node_nbr.get("problem");
-                JSONArray con_nbr = (JSONArray)_node_nbr.get("concept");
+            JSONArray pro_nbr = (JSONArray)_node_nbr.get("problem");
+            JSONArray con_nbr = (JSONArray)_node_nbr.get("concept");
 
-                HashSet<String> problem_node = new HashSet<String>();
-                HashSet<String> concept_node = new HashSet<String>();
-                HashMap<String,HashSet<String>> node_nbr = new HashMap<String,HashSet<String>>();
+            HashSet<String> problem_node = new HashSet<String>();
+            HashSet<String> concept_node = new HashSet<String>();
+            HashMap<String,HashSet<String>> node_nbr = new HashMap<String,HashSet<String>>();
 
-                for(Object problem : pro_nbr)
-					problem_node.add((String)problem);				}
-				node_nbr.put("problem",problem_node);
+            for(Object problem : pro_nbr)
+				problem_node.add((String)problem);		
+			node_nbr.put("problem",problem_node);
 
-				for(Object concept : con_nbr)
-					concept_node.add((String)concept);
-				node_nbr.put("concept",concept_node)
+			for(Object concept : con_nbr)
+				concept_node.add((String)concept);
+			node_nbr.put("concept",concept_node)
 
-     			concept_nodes_nbr.put((String)node,node_nbr);
-            }
-
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
+ 			concept_nodes_nbr.put((String)node,node_nbr);
         }
         return concept_nodes_nbr;
 	}
@@ -61,38 +47,29 @@ public class nbrjsonread
 	public static HashMap<HashSet<String>,Double[][]> to_undirected_edges(JSONObject undir_edge)
 	{
 		HashMap<HashSet<String>,Double[][]> undirected_edges =  new HashMap<HashSet<String>,Double[][]>();
-        try
+
+        JSONArray all_edges = (JSONArray)undir_edge.get("edges");
+        for (Object edge : all_edges)
         {
-            JSONArray all_edges = (JSONArray)undir_edge.get("edges");
-            for (Object edge : all_edges)
+            JSONArray _edge = (JSONArray) undir_edge.get((String)edge);
+
+            Double[][] potential = new Double[2][2];
+
+            int i = 0;
+            for (Object a : _edge)
             {
-                JSONArray _edge = (JSONArray) undir_edge.get((String)edge);
-
-                Double[][] potential = new Double[2][2];
-
-                int i = 0;
-                for (Object a : _edge)
+            	int j = 0;
+                for (Object b : (JSONArray)a)
                 {
-                	int j = 0;
-	                for (Object b : (JSONArray)a)
-	                {
-	                	potential[i][j] = (double)b;
-	                    j++;
-	                }
-	                i ++;
+                	potential[i][j] = (double)b;
+                    j++;
                 }
-
-     			undirected_edges.put((String)edge,potential);
+                i ++;
             }
 
+ 			undirected_edges.put((String)edge,potential);
         }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+
         return undirected_edges;
 	}
 
@@ -122,16 +99,35 @@ public class nbrjsonread
 	}
 
 	
-	public static void bptest() throws IOException 
+	public static void readtest() throws IOException 
 	{
+
+		JSONParser parser = new JSONParser();
+        try
+        {
+            JSONObject a = (JSONObject) parser.parse(new FileReader("concept_node_nbr.json"));
+            JSONObject b = (JSONObject) parser.parse(new FileReader("undirected_edges.json"));
+            JSONObject c = (JSONObject) parser.parse(new FileReader("directed_edges.json"));
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        HashMap<String,HashMap<String,HashSet<String>>> concept_nodes_nbr = to_concept_node_nbr(a);
+		HashMap<HashSet<String>,Double[][]> undirected_edges = to_undirected_edges(b);
+		HashMap<String,Double[]>  directed_edges = to_directed_edges(c);
 
 		JSONObject obj1 =  concept_node_nbr_toJSON (concept_nodes_nbr);
 		JSONObject obj2 =  undirected_edges_toJSON (undirected_edges);
 		JSONObject obj3 =  directed_edges_toJSON (directed_edges);
 		
-		FileWriter file1 = new FileWriter("jsonfile1.txt");
-		FileWriter file2 = new FileWriter("jsonfile2.txt");
-		FileWriter file3 = new FileWriter("jsonfile3.txt");
+		FileWriter file1 = new FileWriter("concept_node_nbr1.txt");
+		FileWriter file2 = new FileWriter("undirected_edges1.txt");
+		FileWriter file3 = new FileWriter("directed_edges1.txt");
 
 		file1.write(obj1.toJSONString());
 		file1.flush();
@@ -152,11 +148,11 @@ public class nbrjsonread
 		
 	}
 	
-	public static void main(String[] acg) 
-	{
-		try {bptest();}
-		catch (IOException e) {
-            e.printStackTrace();
-        }
-	}
+	// public static void main(String[] acg) 
+	// {
+	// 	try {readtest();}
+	// 	catch (IOException e) {
+ //            e.printStackTrace();
+ //        }
+	// }
 }
