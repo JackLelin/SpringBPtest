@@ -57,8 +57,8 @@ public class nbrjsonwrite
 					node_name = node_name + "#" + node;
 
 			}
-
-			obj.put(node_name,(double[][])edge.getValue());
+			Double[][] pot = edge.getValue();
+			obj.put(node_name,{{pot[0][0],pot[0][1]},{pot[1][0],pot[1][1]}});
 		}
 
 		return obj;
@@ -70,7 +70,8 @@ public class nbrjsonwrite
 
 		for (HashMap.Entry<String,Double[]> edge : directed_edges.entrySet())
 		{
-			obj.put(edge.getKey(),(double[][])edge.getValue());
+			Double[] pot = edge.getValue();
+			obj.put(edge.getKey(),{pot[0],pot[1]});
 		}
 
 		return obj;
