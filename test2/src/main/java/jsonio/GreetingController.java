@@ -39,13 +39,14 @@ public class GreetingController {
     }
 
     @RequestMapping(path = "/bp")
-    public BpResult calculatebp(@RequestParam(value="testgraph",defaultValue="test") String graph, @RequestParam(value="nodes",defaultValue="a,ab,abc") String problems ,@RequestParam(value="result",defaultValue="1,1,0") String result) 
+    public JSONObject calculatebp(@RequestParam(value="testgraph",defaultValue="test") String graph, @RequestParam(value="nodes",defaultValue="a,ab,abc") String problems ,@RequestParam(value="result",defaultValue="1,1,0") String result) 
     {
 
         BpResult bp = new BpResult(graph);
         bp.start(problems,result);
+
     	// Integer.parseInt(
-        return bp;
+        return bp.getJSON();;
     }
 
 }

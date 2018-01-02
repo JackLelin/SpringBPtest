@@ -24,7 +24,7 @@ public class BpResult
 	HashMap<String,Double[]> directed_edges;
 	HashMap<String,String> problem_nodes_nbr = null;
 
-	public String get_concept_nodes_marginal() 
+	public JSONObject get_concept_nodes_marginal() 
 	{
 		JSONObject obj = new JSONObject();
 		JSONArray con_nodes = new JSONArray();
@@ -36,12 +36,12 @@ public class BpResult
 		}
 
 		obj.put("nodes",con_nodes);
-		return obj.toJSONString();
+		return obj;
     }
 
-    public String get_undirected_edges_marginal() 
+    public JSONObject get_undirected_edges_marginal() 
     {
-        return nbrjsonwrite.undirected_edges_toJSON(undirected_edges_marginal).toJSONString();
+        return nbrjsonwrite.undirected_edges_toJSON(undirected_edges_marginal);
 
     }
 
@@ -60,6 +60,14 @@ public class BpResult
 		bp.hidden_marginal_given_observed(observation, concept_nodes_nbr, problem_nodes_nbr,  
 				undirected_edges, directed_edges,concept_nodes_marginal,undirected_edges_marginal);
 			
+    }
+
+    public JSONObject getJSON()
+    {
+    	JSONObject obj = new JSONObject();
+    	obj.put("concept_nodes_marginal",get_concept_nodes_marginal());
+    	obj.put("undirected_edges_marginal", get_undirected_edges_marginal());
+    	return obj;
     }
 	
 }
