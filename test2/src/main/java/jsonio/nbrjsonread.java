@@ -117,11 +117,18 @@ public class nbrjsonread
     		HashMap<HashSet<String>,Double[][]> undirected_edges = to_undirected_edges(b);
     		HashMap<String,Double[]>  directed_edges = to_directed_edges(c);
 
+            HashMap<String,String> problem_nodes_nbr = null;
+            HashMap<String,Integer> observation = new HashMap<String,Integer>();
+
 
             HashMap<String,Double> concept_nodes_marginal = new HashMap<String,Double> ();
             HashMap<HashSet<String>,Double[][]> undirected_edges_marginal = new HashMap<HashSet<String>,Double[][]>();
             
             BliefPropagation bptest = new BliefPropagation();
+            
+            observation.put("a",1);
+            observation.put("ab",1);
+            observation.put("abc",0);
             
             bptest.hidden_marginal_given_observed(observation, concept_nodes_nbr, problem_nodes_nbr,  
                     undirected_edges, directed_edges,concept_nodes_marginal,undirected_edges_marginal);
@@ -148,9 +155,9 @@ public class nbrjsonread
                 for (Double[] d : node.getValue())
                 {
                     System.out.print("[");
-                    for (double a : d)
+                    for (double i : d)
                     {
-                        System.out.print(a + ",");
+                        System.out.print(i + ",");
                     }
                     System.out.print("]");
                 }
