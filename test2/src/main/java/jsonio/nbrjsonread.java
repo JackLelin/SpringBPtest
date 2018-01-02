@@ -192,6 +192,13 @@ public class nbrjsonread
 	
 	public static void main(String[] acg) 
 	{
-		nbrjsonwrite.generateTest("testgraph");
+        try {
+            nbrjsonwrite.generateTest("testgraph");
+        }
+        catch( IOException e)
+        {
+            e.printStackTrace();
+        }
+		
 	}
 }
