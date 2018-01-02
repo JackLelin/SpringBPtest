@@ -48,12 +48,11 @@ public class BpResult
     public void start(String problems,String result)
     {
     	observation = new HashMap<String,Integer>();
-    	String[] parts1 = problems.split("#");
-    	String[] parts2 = result.split("#");
-    	int i = 0;
-		for ( String s : parts1)
+    	String[] parts1 = problems.split("$");
+    	String[] parts2 = result.split("$");
+		for ( int i = 0; i<parts1.length; i++)
 		{
-			observation.put(s,Integer.parseInt(parts2[i]));
+			observation.put(parts1[i],Integer.parseInt(parts2[i]));
 		}
 		BliefPropagation bp = new BliefPropagation();
 		bp.hidden_marginal_given_observed(observation, concept_nodes_nbr, problem_nodes_nbr,  

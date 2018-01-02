@@ -21,16 +21,16 @@ public class GreetingController {
     }
 
     @RequestMapping(path = "/test")
-    public JSONObject test(@RequestParam(value="name",defaultValue="test") String graph, @RequestParam(value="nodes",defaultValue="a#ab#abc") String problems ,@RequestParam(value="result",defaultValue="1#1#0") String result)
+    public JSONObject test(@RequestParam(value="name",defaultValue="test") String graph, @RequestParam(value="nodes",defaultValue="a$ab$abc") String problems ,@RequestParam(value="result",defaultValue="1$1$0") String result)
     {
         JSONObject obj = new JSONObject();
         obj.put("name",graph);
         JSONArray a = new JSONArray();
-        String[] parts1 = problems.split("#");
+        String[] parts1 = problems.split("$");
         for (String s : parts1)
             a.add(s);
         JSONArray b = new JSONArray();
-        String[] parts2 = result.split("#");
+        String[] parts2 = result.split("$");
         for (String s :parts2)
             b.add(s);
         obj.put("nodes",a);
