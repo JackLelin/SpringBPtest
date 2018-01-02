@@ -31,8 +31,8 @@ public class BpResult
 
 		for (HashMap.Entry<String,Double> node : get_concept_nodes_marginal.entrySet())
 		{
-			obj.put(edge.getKey(),pot);
-			con_nodes.add(edge.getKey());
+			obj.put(node.getKey(),node.getValue());
+			con_nodes.add(node.getKey());
 		}
 
 		obj.put("nodes",con_nodes);
@@ -55,10 +55,10 @@ public class BpResult
 		{
 			observation.put(s,Integer.parseInt(part2[i]));
 		}
-
-		BliefPropagation.hidden_marginal_given_observed(observation, concept_nodes_nbr, problem_nodes_nbr,  
+		BliefPropagation bp = new BliefPropagation();
+		bp.hidden_marginal_given_observed(observation, concept_nodes_nbr, problem_nodes_nbr,  
 				undirected_edges, directed_edges,concept_nodes_marginal,undirected_edges_marginal);
-		BliefPropagation.hidden_marginal_given_observed(observation, concept_nodes_nbr, problem_nodes_nbr,  
+		bp.hidden_marginal_given_observed(observation, concept_nodes_nbr, problem_nodes_nbr,  
 				undirected_edges, directed_edges,concept_nodes_marginal,undirected_edges_marginal);
 			
     }

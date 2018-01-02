@@ -100,7 +100,7 @@ public class nbrjsonread
 
 	}
 
-    public static JSONObject readJson(String fname ) 
+    public static JSONObject readJSON(String fname ) 
     {
         try {
             JSONObject a = (JSONObject) parser.parse(new FileReader(fname));
