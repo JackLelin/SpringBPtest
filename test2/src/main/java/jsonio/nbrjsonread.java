@@ -103,9 +103,9 @@ public class nbrjsonread
     public static JSONObject readJSON(String fname ) 
     {
         JSONParser parser = new JSONParser();
-        JSONObject a;
+        
         try {
-            a = (JSONObject) parser.parse(new FileReader(fname));
+            JSONObject a = (JSONObject) parser.parse(new FileReader(fname));
             System.out.println("Successfully Copied JSON from File"+fname);
             System.out.println(a);
             return a;
@@ -117,7 +117,7 @@ public class nbrjsonread
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return a;
+        return null;
     }
 	
 	public static void readTest(String graphname)
