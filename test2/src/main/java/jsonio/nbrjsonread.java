@@ -117,29 +117,45 @@ public class nbrjsonread
     		HashMap<HashSet<String>,Double[][]> undirected_edges = to_undirected_edges(b);
     		HashMap<String,Double[]>  directed_edges = to_directed_edges(c);
 
-    		JSONObject obj1 =  nbrjsonwrite.concept_node_nbr_toJSON (concept_nodes_nbr);
-    		JSONObject obj2 =  nbrjsonwrite.undirected_edges_toJSON (undirected_edges);
-    		JSONObject obj3 =  nbrjsonwrite.directed_edges_toJSON (directed_edges);
-    		
-    		FileWriter file1 = new FileWriter("concept_node_nbr1.txt");
-    		FileWriter file2 = new FileWriter("undirected_edges1.txt");
-    		FileWriter file3 = new FileWriter("directed_edges1.txt");
 
-    		file1.write(obj1.toJSONString());
-    		file1.flush();
-    		file1.close();
-    		System.out.println("Successfully Copied JSON Object to File...");
-    		System.out.println("\nJSON Object: " + obj1);
-    		file2.write(obj2.toJSONString());
-    		file2.flush();
-    		file2.close();
-    		System.out.println("Successfully Copied JSON Object to File...");
-    		System.out.println("\nJSON Object: " + obj2);
-    		file3.write(obj3.toJSONString());
-    		file3.flush();
-    		file3.close();
-    		System.out.println("Successfully Copied JSON Object to File...");
-    		System.out.println("\nJSON Object: " + obj3);
+            HashMap<String,Double> concept_nodes_marginal = new HashMap<String,Double> ();
+            HashMap<HashSet<String>,Double[][]> undirected_edges_marginal = new HashMap<HashSet<String>,Double[][]>();
+            
+            BliefPropagation bptest = new BliefPropagation();
+            
+            bptest.hidden_marginal_given_observed(observation, concept_nodes_nbr, problem_nodes_nbr,  
+                    undirected_edges, directed_edges,concept_nodes_marginal,undirected_edges_marginal);
+            bptest.hidden_marginal_given_observed(observation, concept_nodes_nbr, problem_nodes_nbr,  
+                    undirected_edges, directed_edges,concept_nodes_marginal,undirected_edges_marginal);
+            
+            
+            
+            
+            System.out.println("concept_nodes_marginal");
+            for (HashMap.Entry<String,Double> node : concept_nodes_marginal.entrySet())
+            {
+                System.out.print(node.getKey() +":"+ node.getValue() + ",");
+            }
+            System.out.println("");
+            
+            System.out.println("undirected_edges_marginal");
+            for (HashMap.Entry<HashSet<String>,Double[][]> node : undirected_edges_marginal.entrySet())
+            {
+                System.out.print("{"+node.getKey() +",");
+                System.out.print("}:");
+                
+                System.out.print("[");
+                for (Double[] d : node.getValue())
+                {
+                    System.out.print("[");
+                    for (double a : d)
+                    {
+                        System.out.print(a + ",");
+                    }
+                    System.out.print("]");
+                }
+                System.out.println("]");
+            }
 
         }
         catch (FileNotFoundException e) {
