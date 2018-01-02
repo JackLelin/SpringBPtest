@@ -29,7 +29,7 @@ public class BpResult
 		JSONObject obj = new JSONObject();
 		JSONArray con_nodes = new JSONArray();
 
-		for (HashMap.Entry<String,Double> node : get_concept_nodes_marginal.entrySet())
+		for (HashMap.Entry<String,Double> node : concept_nodes_marginal.entrySet())
 		{
 			obj.put(node.getKey(),node.getValue());
 			con_nodes.add(node.getKey());
