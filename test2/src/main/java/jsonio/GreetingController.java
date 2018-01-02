@@ -44,9 +44,8 @@ public class GreetingController {
 
         BpResult bp = new BpResult(graph);
         bp.start(problems,result);
-
-    	// Integer.parseInt(
-        return bp.getJSON();;
+        
+        return bp.getJSON();
     }
 
 }
