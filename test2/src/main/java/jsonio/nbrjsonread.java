@@ -190,8 +190,8 @@ public class nbrjsonread
 		
 	}
 	
-	// public static void main(String[] acg) 
-	// {
-	// 	readTest();
-	// }
+	public static void main(String[] acg) 
+	{
+		nbrjsonwrite.generateTest("testgraph");
+	}
 }
