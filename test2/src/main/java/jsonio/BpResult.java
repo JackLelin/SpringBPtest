@@ -39,7 +39,7 @@ public class BpResult
 		return obj.toJSONString();
     }
 
-    public HashMap<HashSet<String>,Double[][]> get_undirected_edges_marginal() 
+    public String get_undirected_edges_marginal() 
     {
         return nbrjsonwrite.undirected_edges_toJSON(undirected_edges_marginal).toJSONString();
 
@@ -53,7 +53,7 @@ public class BpResult
     	int i = 0;
 		for ( String s : parts1)
 		{
-			observation.put(s,Integer.parseInt(part2[i]));
+			observation.put(s,Integer.parseInt(parts2[i]));
 		}
 		BliefPropagation bp = new BliefPropagation();
 		bp.hidden_marginal_given_observed(observation, concept_nodes_nbr, problem_nodes_nbr,  
