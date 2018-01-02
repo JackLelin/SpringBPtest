@@ -130,9 +130,6 @@ public class nbrjsonwrite
 
 		if ( module == 1)
 		{
-			observation.put("a",1);
-			observation.put("ab",1);
-			observation.put("abc",0);
 		
 			HashMap<String,HashSet<String>> c_a = new HashMap<String,HashSet<String>>();
 				HashSet<String> c_a_p1 = new HashSet<String>();
@@ -196,8 +193,7 @@ public class nbrjsonwrite
 		
 		if ( module == 2)
 		{
-			observation.put("a",1);
-			observation.put("ab",1);
+
 		
 			HashMap<String,HashSet<String>> c_a = new HashMap<String,HashSet<String>>();
 				HashSet<String> c_a_p1 = new HashSet<String>();
