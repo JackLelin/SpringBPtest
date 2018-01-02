@@ -106,7 +106,7 @@ public class nbrjsonread
         JSONObject a;
         try {
             a = (JSONObject) parser.parse(new FileReader(fname));
-            System.out.println("Successfully Copied JSON from File"+s);
+            System.out.println("Successfully Copied JSON from File"+fname);
             System.out.println(a);
             return a;
         }
