@@ -234,27 +234,41 @@ public class nbrjsonwrite
 		JSONObject obj1 =  concept_node_nbr_toJSON (concept_nodes_nbr);
 		JSONObject obj2 =  undirected_edges_toJSON (undirected_edges);
 		JSONObject obj3 =  directed_edges_toJSON (directed_edges);
-		
+
 		FileWriter file1 = new FileWriter(graphname+"/concept_node_nbr.json");
 		FileWriter file2 = new FileWriter(graphname+"/undirected_edges.json");
 		FileWriter file3 = new FileWriter(graphname+"/directed_edges.json");
+		try 
+		{
 
-		file1.write(obj1.toJSONString());
-		file1.flush();
-		file1.close();
-		System.out.println("Successfully Copied JSON Object to File...");
-		System.out.println("\nJSON Object: " + obj1);
-		file2.write(obj2.toJSONString());
-		file2.flush();
-		file2.close();
-		System.out.println("Successfully Copied JSON Object to File...");
-		System.out.println("\nJSON Object: " + obj2);
-		file3.write(obj3.toJSONString());
-		file3.flush();
-		file3.close();
-		System.out.println("Successfully Copied JSON Object to File...");
-		System.out.println("\nJSON Object: " + obj3);
+			file1.write(obj1.toJSONString());
+			
+			System.out.println("Successfully Copied JSON Object to File...");
+			System.out.println("\nJSON Object: " + obj1);
+			file2.write(obj2.toJSONString());
+			
+			System.out.println("Successfully Copied JSON Object to File...");
+			System.out.println("\nJSON Object: " + obj2);
+			file3.write(obj3.toJSONString());
+			
+			System.out.println("Successfully Copied JSON Object to File...");
+			System.out.println("\nJSON Object: " + obj3);
+		}
 		
+		catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally
+        {
+        	file1.flush();
+			file1.close();
+			file2.flush();
+			file2.close();
+			file3.flush();
+			file3.close();
+        }
 	}
 	
 }

@@ -20,6 +20,7 @@ public class GreetingController {
     @RequestMapping(path = "/bp")
     public BpResult calculatebp(@RequestParam(value="name") String graph, @RequestParam(value="nodes") String problems ,@RequestParam(value="result") String result) 
     {
+
         BpResult bp = new BpResult(graph);
         bp.start(problems,result);
     	// Integer.parseInt(

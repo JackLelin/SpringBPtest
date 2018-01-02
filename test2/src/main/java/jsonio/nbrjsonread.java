@@ -190,15 +190,15 @@ public class nbrjsonread
 		
 	}
 	
-	public static void main(String[] acg) 
-	{
-        try {
-            nbrjsonwrite.generateTest("testgraph");
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+	// public static void main(String[] acg) 
+	// {
+ //        try {
+ //            nbrjsonwrite.generateTest("testgraph");
+ //        }
+ //        catch (FileNotFoundException e) {
+ //            e.printStackTrace();
+ //        } catch (IOException e) {
+ //            e.printStackTrace();
+ //        }
+ //    }
 }
