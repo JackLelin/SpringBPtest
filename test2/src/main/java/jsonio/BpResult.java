@@ -12,8 +12,8 @@ public class BpResult
 	{
 		graphname = s;
 		concept_nodes_nbr = nbrjsonread.to_concept_node_nbr(nbrjsonread.readJSON(s+"/concept_nodes_nbr.json"));
-		undirected_edges = nbrjsonread.to_undirected_edges(nbrjsonread.readJSON(s+"/undirected_edges"));
-		directed_edges = nbrjsonread.to_directed_edges(nbrjsonread.readJSON(s+"/directed_edges"));
+		undirected_edges = nbrjsonread.to_undirected_edges(nbrjsonread.readJSON(s+"/undirected_edges.json"));
+		directed_edges = nbrjsonread.to_directed_edges(nbrjsonread.readJSON(s+"/directed_edges.json"));
 	}
 	HashMap<String,Double> concept_nodes_marginal = new HashMap<String,Double> ();
 	HashMap<HashSet<String>,Double[][]> undirected_edges_marginal = new HashMap<HashSet<String>,Double[][]>();

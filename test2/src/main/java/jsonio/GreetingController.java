@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 @RestController
 public class GreetingController {
 
@@ -15,6 +18,24 @@ public class GreetingController {
     public Greeting greeting(@RequestParam(value="name") String name) 
     {
         return new Greeting( counter.incrementAndGet(), String.format(template, name) );
+    }
+
+    @RequestMapping(path = "/test")
+    public JSONObject test(@RequestParam(value="name") String graph, @RequestParam(value="nodes") String problems ,@RequestParam(value="result") String result)
+    {
+        JSONObject obj = new JSONObject();
+        obj.put("name",graph);
+        JSONArray a = new JSONArray();
+        String[] parts1 = problems.split("#");
+        for (String s : parts1)
+            a.add(s);
+        JSONArray b = new JSONArray();
+        String[] parts2 = result.split("#");
+        for (String s :parts2)
+            b.add(s);
+        obj.put("nodes",a);
+        obj.put("result",b);
+        return obj;
     }
 
     @RequestMapping(path = "/bp")
