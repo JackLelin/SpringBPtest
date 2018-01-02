@@ -11,17 +11,18 @@ public class GreetingController {
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 
-    @RequestMapping("/greeting")
-    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) 
+    @RequestMapping(path = "/greeting",method = RequestMethod.GET)
+    public Greeting greeting(@RequestParam(value="name") String name) 
     {
         return new Greeting( counter.incrementAndGet(), String.format(template, name) );
     }
 
-    // @RequestMapping("/bp")
-    // public Greeting greeting(@RequestParam(value=1, defaultValue=2) int testid) 
-    // {
-    // 	// Integer.parseInt(
-    //     return new BpResult( testid);
-    // }
+    @RequestMapping(path = "/bp" , method = RequestMethod.GET)
+    public Greeting calculatebp(@RequestParam(value="name") String graph, @RequestParam(value="nodes") String problems ,@RequestParam(value="result") String result) 
+    {
+        BpResult bp = new BpResult(graph);
+    	// Integer.parseInt(
+        return new BpResult( testid);
+    }
 
 }

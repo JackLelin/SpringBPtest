@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class nbrjsonwrite 
 {
-	
+
 	public static JSONObject concept_node_nbr_toJSON(HashMap<String,HashMap<String,HashSet<String>>> concept_nodes_nbr) 
 	{
 		JSONObject jsonobj = new JSONObject();
@@ -93,15 +93,39 @@ public class nbrjsonwrite
 		obj.put("edges",all_edges);
 		return obj;
 	}
+	public static void saveGraph(String graphname,HashMap<String,HashMap<String,HashSet<String>>> concept_nodes_nbr,HashMap<HashSet<String>,Double[][]> undirected_edges,HashMap<String,Double[]> directed_edges) throws IOException
+	{
 
+		JSONObject obj1 =  concept_node_nbr_toJSON (concept_nodes_nbr);
+		JSONObject obj2 =  undirected_edges_toJSON (undirected_edges);
+		JSONObject obj3 =  directed_edges_toJSON (directed_edges);
+		
+		FileWriter file1 = new FileWriter(graphname+"/concept_node_nbr.txt");
+		FileWriter file2 = new FileWriter(graphname+"/undirected_edges.txt");
+		FileWriter file3 = new FileWriter(graphname+"/directed_edges.txt");
+
+		file1.write(obj1.toJSONString());
+		file1.flush();
+		file1.close();
+		System.out.println("Successfully Copied JSON Object to File...");
+		System.out.println("\nJSON Object: " + obj1);
+		file2.write(obj2.toJSONString());
+		file2.flush();
+		file2.close();
+		System.out.println("Successfully Copied JSON Object to File...");
+		System.out.println("\nJSON Object: " + obj2);
+		file3.write(obj3.toJSONString());
+		file3.flush();
+		file3.close();
+		System.out.println("Successfully Copied JSON Object to File...");
+		System.out.println("\nJSON Object: " + obj3);
+	}
 	
-	public static void bptest() throws IOException 
+	public static void generateTest(String graphname) throws IOException 
 	{
 		int module = 1;
-		HashMap<String,Integer> observation = new HashMap<String,Integer>();
 		HashMap<String,HashMap<String,HashSet<String>>> concept_nodes_nbr =  new HashMap<String,HashMap<String,HashSet<String>>>();
 		HashMap<HashSet<String>,Double[][]> undirected_edges = new HashMap<HashSet<String>,Double[][]>();
-		HashMap<String,String> problem_nodes_nbr = null;
 		HashMap<String,Double[]> directed_edges = new HashMap<String,Double[]> ();
 
 		if ( module == 1)
@@ -215,9 +239,9 @@ public class nbrjsonwrite
 		JSONObject obj2 =  undirected_edges_toJSON (undirected_edges);
 		JSONObject obj3 =  directed_edges_toJSON (directed_edges);
 		
-		FileWriter file1 = new FileWriter("concept_node_nbr.txt");
-		FileWriter file2 = new FileWriter("undirected_edges.txt");
-		FileWriter file3 = new FileWriter("directed_edges.txt");
+		FileWriter file1 = new FileWriter(graphname+"/concept_node_nbr.txt");
+		FileWriter file2 = new FileWriter(graphname+"/undirected_edges.txt");
+		FileWriter file3 = new FileWriter(graphname+"/directed_edges.txt");
 
 		file1.write(obj1.toJSONString());
 		file1.flush();
@@ -234,52 +258,7 @@ public class nbrjsonwrite
 		file3.close();
 		System.out.println("Successfully Copied JSON Object to File...");
 		System.out.println("\nJSON Object: " + obj3);
-		// HashMap<String,Double> concept_nodes_marginal = new ;HashMap<String,Double> ();
-		// HashMap<HashSet<String>,Double[][]> undirected_edges_marginal = new HashMap<HashSet<String>,Double[][]>();
-		
-		// BliefPropagation bptest = new BliefPropagation();
-		
-		// bptest.hidden_marginal_given_observed(observation, concept_nodes_nbr, problem_nodes_nbr,  
-		// 		undirected_edges, directed_edges,concept_nodes_marginal,undirected_edges_marginal);
-		// bptest.hidden_marginal_given_observed(observation, concept_nodes_nbr, problem_nodes_nbr,  
-		// 		undirected_edges, directed_edges,concept_nodes_marginal,undirected_edges_marginal);
-		
-		
-		
-		
-		// System.out.println("concept_nodes_marginal");
-		// for (HashMap.Entry<String,Double> node : concept_nodes_marginal.entrySet())
-		// {
-		// 	System.out.print(node.getKey() +":"+ node.getValue() + ",");
-		// }
-		// System.out.println("");
-		
-		// System.out.println("undirected_edges_marginal");
-		// for (HashMap.Entry<HashSet<String>,Double[][]> node : undirected_edges_marginal.entrySet())
-		// {
-		// 	System.out.print("{"+node.getKey() +",");
-		// 	System.out.print("}:");
-			
-		// 	System.out.print("[");
-		// 	for (Double[] d : node.getValue())
-		// 	{
-		// 		System.out.print("[");
-		// 		for (double a : d)
-		// 		{
-		// 			System.out.print(a + ",");
-		// 		}
-		// 		System.out.print("]");
-		// 	}
-		// 	System.out.println("]");
-		// }
 		
 	}
 	
-	// public static void main(String[] acg) 
-	// {
-	// 	try {bptest();}
-	// 	catch (IOException e) {
- //            e.printStackTrace();
- //        }
-	// }
 }

@@ -14,7 +14,6 @@ import org.json.simple.parser.ParseException;
 
 public class nbrjsonread 
 {
-	
 	public static HashMap<String,HashMap<String,HashSet<String>>> to_concept_node_nbr(JSONObject nbr) 
 	{
 		HashMap<String,HashMap<String,HashSet<String>>> concept_nodes_nbr =  new HashMap<String,HashMap<String,HashSet<String>>>();
@@ -101,16 +100,30 @@ public class nbrjsonread
 
 	}
 
+    public static JSONObject readJson(String fname ) 
+    {
+        try {
+            JSONObject a = (JSONObject) parser.parse(new FileReader(fname));
+            return a;
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
 	
-	public static void readtest()
+	public static void readTest(String graphname)
 	{
 
 		JSONParser parser = new JSONParser();
         try
         {
-            JSONObject a = (JSONObject) parser.parse(new FileReader("concept_node_nbr.txt"));
-            JSONObject b = (JSONObject) parser.parse(new FileReader("undirected_edges.txt"));
-            JSONObject c = (JSONObject) parser.parse(new FileReader("directed_edges.txt"));
+            JSONObject a = (JSONObject) parser.parse(new FileReader(graphname + "/concept_node_nbr.txt"));
+            JSONObject b = (JSONObject) parser.parse(new FileReader(graphname + "/undirected_edges.txt"));
+            JSONObject c = (JSONObject) parser.parse(new FileReader(graphname + "/directed_edges.txt"));
 
 
             HashMap<String,HashMap<String,HashSet<String>>> concept_nodes_nbr = to_concept_node_nbr(a);
@@ -123,7 +136,7 @@ public class nbrjsonread
 
             HashMap<String,Double> concept_nodes_marginal = new HashMap<String,Double> ();
             HashMap<HashSet<String>,Double[][]> undirected_edges_marginal = new HashMap<HashSet<String>,Double[][]>();
-            
+               
             BliefPropagation bptest = new BliefPropagation();
             
             observation.put("a",1);
