@@ -14,7 +14,7 @@ import org.json.simple.parser.ParseException;
 
 public class nbrjsonread 
 {
-	public static HashMap<String,HashMap<String,HashSet<String>>> to_concept_node_nbr(JSONObject nbr) 
+	public static HashMap<String,HashMap<String,HashSet<String>>> to_concept_nodes_nbr(JSONObject nbr) 
 	{
 		HashMap<String,HashMap<String,HashSet<String>>> concept_nodes_nbr =  new HashMap<String,HashMap<String,HashSet<String>>>();
 
@@ -126,12 +126,12 @@ public class nbrjsonread
 		JSONParser parser = new JSONParser();
         try
         {
-            JSONObject a = (JSONObject) parser.parse(new FileReader(graphname + "/concept_node_nbr.txt"));
+            JSONObject a = (JSONObject) parser.parse(new FileReader(graphname + "/concept_nodes_nbr.txt"));
             JSONObject b = (JSONObject) parser.parse(new FileReader(graphname + "/undirected_edges.txt"));
             JSONObject c = (JSONObject) parser.parse(new FileReader(graphname + "/directed_edges.txt"));
 
 
-            HashMap<String,HashMap<String,HashSet<String>>> concept_nodes_nbr = to_concept_node_nbr(a);
+            HashMap<String,HashMap<String,HashSet<String>>> concept_nodes_nbr = to_concept_nodes_nbr(a);
     		HashMap<HashSet<String>,Double[][]> undirected_edges = to_undirected_edges(b);
     		HashMap<String,Double[]>  directed_edges = to_directed_edges(c);
 
