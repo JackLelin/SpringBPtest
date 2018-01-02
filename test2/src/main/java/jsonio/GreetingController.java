@@ -15,13 +15,13 @@ public class GreetingController {
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping(path = "/greeting")
-    public Greeting greeting(@RequestParam(value="name") String name) 
+    public Greeting greeting(@RequestParam(value="name",defaultValue="World") String name) 
     {
         return new Greeting( counter.incrementAndGet(), String.format(template, name) );
     }
 
     @RequestMapping(path = "/test")
-    public JSONObject test(@RequestParam(value="name") String graph, @RequestParam(value="nodes") String problems ,@RequestParam(value="result") String result)
+    public JSONObject test(@RequestParam(value="name",defaultValue="test") String graph, @RequestParam(value="nodes",defaultValue="a#ab#abc") String problems ,@RequestParam(value="result",defaultValue="1#1#0") String result)
     {
         JSONObject obj = new JSONObject();
         obj.put("name",graph);
